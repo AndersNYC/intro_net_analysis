@@ -1,14 +1,30 @@
+# Things to do
+
+- Make sure to let it clear that most of this presentation was based on programming historian, and the other thing over there. Reference them to the original posts, which are more complete and advance and they should definitively take a look. 
+- Make sure they have everything installed. Check libraries and let them know that if they have anaconda installed, they should be good to go.
+- Write the description to put on eventbrite. Put the suggested requirements.
+- Decide the structure of the course
+- Decide a database to work with
+- Decide a simple database to create with them
+- Create challenges
+- Look for pictures to use on the presentation
+- Look for interesting conclusions drawed from network analysis
+- Prepare speach about the course (I'm no expert in network analysis, I've just started, this is just an intro...) 
+
 # Things will help if they know already
 
 Get useful links for all of those:
 
+- Need anaconda installed, or python + networkx + matplotlib
 - Basics of python. Take the intro to python course. https://github.com/DHRI-Curriculum/python
 - We will use some types that were not covered on the intro course, so it would be a good idea to read about Tuples and Dictionaries. PROVIDE LINKS
 - Tuples (name comes from pair, triple, quadruple, quintuple, sextuple... hence "tuple" as a generic name) Tuples are immutable, which makes them smaller is size (bits wise) and faster in processing.
 - Dictionaries
 - List comprehension
+- csv files
 - datetime.date type: https://docs.python.org/3/library/datetime.html
 - basic knowledge of networks might be handy.
+- Don't let this list scare you off. If you can take a look at them before and have an idea of what they are, great. If they are not making sense, we can talk about them during the workshop.
 
 # Introduction to networks
 
@@ -66,6 +82,8 @@ If you try to add an existent node/edge, NetworkX quietly ignores it. Adding an 
 
 `G.number_of_nodes()` and `G.number_of_edges()` will show the number of nodes/edges.
 
+`print(nx.info(G))` Nice summary of your network. Average degree is the average number of connections of each node in your network
+
 `G.neighbors(2)` will show the nodes that are neighbors here. (say, 1 and 3).
 
 Metadata can be stored in the graph as well.
@@ -92,6 +110,29 @@ for n1, n2, attr in g.edges(data=True):
 
 Some useful commands to know about dictionaries: 
 `my_dict.keys()` retrieve dictionary keys, while `my_dict.items()` creates a (key,value) tuple that is particularly useful with list comprehensions, as we will see later.
+
+## Other interesting data
+
+The graphs are awesome and look cool, but they can only tell so much. After playing around, you will notice that many graphs look a lot like each other, so we need other measures to help understande the characteristics of our network.
+
+- Density. This measures how many connections exist among all the possible ones. Teoretically, all nodes could be linked to all the other nodes, but in practice, just a smaller number of those connections exist. The function density outputs a number from 0 (no connections whatsoever) to 1 (all possible connections). 
+
+```python
+density = nx.desnsity(G)
+print(density)
+```
+
+- Shortest path measurement: friend of a friend. This calculates the shortest path of edges and nodes between two given nodes. This can take a while to process since python actually checks all the possible connections.
+
+```python
+fell_whitehead_path = nx.shortest_path(G, source="Margaret Fell", target="George Whitehead")
+```
+
+
+- Diameter: a derivative of the shortest path measurement, diameter will output what is the longest of all the shortest path measurements. In other words, what are the gives the longest chain of connections. This is a little bit more complicated, because it doesn't run with all the data, we need to make some changes first. Check programming historian
+
+- Triadic closure:
+
 
 ## Plotting
 
@@ -262,10 +303,132 @@ a2.draw()
 
 plt.show()
 ```
+
+# Reading files and importing data in the Quaker example
+
+We will use the two files that we have available. First, let's create a plaintext file in our directory. Then proceed to import things we need. Depending on how your data comes, the procedure would be different. This is part of knowing how to prepare data for data analysis, which is usually the harderst and more laborious part. 
+
+```python
+with open('quakers_nodelist.csv', 'r') as nodecsv: # Open the file                       
+    nodereader = csv.reader(nodecsv) # Read the csv  
+    # Retrieve the data (using Python list comprhension and list slicing to remove the header row, see footnote 3)
+    nodes = [n for n in nodereader][1:]
+
+node_names = [n[0] for n in nodes] # Get a list of only the node names                                       
+
+with open('quakers_edgelist.csv', 'r') as edgecsv: # Open the file
+    edgereader = csv.reader(edgecsv) # Read the csv
+    edges = [tuple(e) for e in edgereader][1:] # Retrieve the data
+```
+
 ## Adding nodes from file
 
 `fh = open('tmp.txt', 'w')` fh meaning file handle
 `g.add_node(fh)`
+
+## Programming Historian tutorial
+ ```python
+import csv
+
+node_csv = open('quakers_nodelist.csv', 'r') # opens the file
+
+node_reader = csv.reader(node_csv) # reads the csv
+```
+
+The csv readers don't support indexing. The value returned is not a list, it is an iterator over the rows. To make them a list:
+
+```python
+nodes = []
+for n in node_reader:
+    nodes.append(n)
+```
+`node_csv.close()` It is important to close all files we open to save memory. It is good coding practice.
+
+
+`print(nodes[0:3])` Problem: first item in the list is not data, it is a header.
+
+```python
+node_names = []
+for n in nodes:
+    node_names.append(n[0])
+
+print(node_names[0:3])
+```
+
+`del node_names[0]` to get rid of the header.
+
+Now we want to do the same with the edges list.
+
+```python
+edge_csv = open('quakers_edgelist.csv', 'r')
+edge_reader = csv.reader(edge_csv)
+
+edges = []
+for e in edge_reader:
+    edges.append(tuple(e)) # we need to make them as tuples to be in conformity with the standards of NetworkX. If we don't do this, it will produce a list of lists.
+
+print(edges[0:3]) # again, first item is a header. We want to get rid of it.
+
+del edges[0]
+print(edges[0:3])
+```
+
+As it happens most of the times in programming, there is a better way to write those things above. Better code is usually more concise and clean, which makes them easier to write and to read.
+
+```python
+with open('quakers_nodelist.csv', 'r') as nodecsv:
+    nodereader = csv.reader(nodecsv)
+    nodes = [n for n in nodereader][1:]
+```
+
+The with statement makes sure that the file will be open only for what is inside the statement, closing it automatically after it is done. The list comprehension works as a for loop, but it is cleaner.
+
+
+- Challenge: let's grab one of the files that I brought and prepare them to work
+- Challenge 2: if you are feeling particularly adventurous, try it with the more concise writing.
+
+Now, to make them a Graph:
+
+```python
+G = nx.Graph()
+
+G.add_nodes_from(node_names)
+G.add_edges_from(edges)
+
+print(nx.info(G)) # Average degree is the average number of connections of each node in your network
+```
+
+We now want a list of attributes. Remember that we have all of them in the variable `nodes`. We will use the functions: `nx.set_node_attributes()` and `nx.set_edge_attributes()`. Remember, those attributes must be in a dictionary form. We will create a dictionary for each of the values that we have in our list and add them as node attributes with `.set_node_attributes(Networkx_Graph_name, dictionary_name, string_name)`
+
+
+```python
+hist_sig_dict = {}
+gender_dict = {}
+birth_dict = {}
+death_dict = {}
+id_dict = {}
+
+for node in nodes:
+    hist_sig_dict[node[0]] = node[1]
+	gender_dict[node[0]] = node[2]
+	birth_dict[node[0]] = node[3]
+	death_dict[node[0]] = node[4]
+	id_dict[node[0]] = node[5]
+	
+
+nx.set_node_attributes(G, hist_sig_dict, 'historical_significance')
+nx.set_node_attributes(G, gender_dict, 'gender')
+nx.set_node_attributes(G, birth_dict, 'birth_year')
+nx.set_node_attributes(G, death_dict, 'death_year')
+nx.set_node_attributes(G, id_dict, 'sdfb_id')
+```
+
+Now we have a working graph with attributes and we can use visualization tools as before. For example:
+
+```python
+for n in G.nodes():
+    print(n, G.node[n]['birth_year'])
+
 
 ## Reading edges from source
 
@@ -276,4 +439,4 @@ https://networkx.github.io/documentation/stable/reference/readwrite/generated/ne
 - [Stanford Large Network Dataset Collection](https://snap.stanford.edu/data/)
 - [re3data - Registry of Research Data Repositories](http://networkrepository.com/)
 - [NetworkX documentation](https://networkx.github.io/documentation/stable/index.html)
-  
+- [Programming Historian](https://programminghistorian.org/en/lessons/exploring-and-analyzing-network-data-with-python)  
