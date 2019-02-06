@@ -1,7 +1,7 @@
 
-# Reading files and importing data in the Quaker example
+# Reading files and importing data
 
-We will use the two files that we have available. First, let's create a plaintext file in our directory. Then proceed to import things we need. Depending on how your data comes, the procedure would be different. This is part of knowing how to prepare data for data analysis, which is usually the harderst and more laborious part. 
+Reading files can be very different depending on the format that you find them. We will practice here one that is already made for you. This part is about learning to to prepare data for analysis, which is usually the hardest and more laborious part. 
 
 
 ```python
@@ -136,7 +136,7 @@ https://networkx.github.io/documentation/stable/reference/readwrite/generated/ne
 `g.add_node(fh)`
 
 
-## Youtube option, seems easy
+## If you have only an edge list:
 
 `G = nx.read_edgelist('my_file.txt')`. You create the graph like this. 
 

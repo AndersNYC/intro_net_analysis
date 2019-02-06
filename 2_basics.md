@@ -52,11 +52,6 @@ Again, let's check the number of edges with `G.number_of_edges()`, and we can se
 
 There are other things we can check in our graph.
 
-`(nx.info(G))` outputs a nice summary of your network. Average degree is the average number of connections of each node in your network.
-
-## Challenge:
-
-Let's create a thinksgiving network. The relatives are nodes and the edges represent who is in speaking terms with whom. Add at least 5 family members. You could call them by numbers, but since it is going to be a small network, let's do it by some sort of nickname. I will go with "thanksgiving" as my network name and add "Me","maga_uncle", "stoned_cousing", "vegan_sister", "yoga_aunt", "dont_bother_me_father", "gun_lover_mother_in_law" and "nice_heart_mommy" as nodes. Feel free to do it however you want. Then, make sure to add some edges of who is in speaking terms to whom. Now create some edges, at least 10 of them.
-
+`(nx.info(G))` outputs a nice summary of your network. Average degree is the average number of connections of each node in your network. We will see that in more details.
 
 [Next](3_metadata.md)

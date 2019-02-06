@@ -1,6 +1,6 @@
-# Other interesting data
+# Other interesting tools
 
-The graphs are awesome and look cool, but they can only tell so much. After playing around, you will notice that many graphs look a lot like each other, so we need other measures to help understand the characteristics of our network.
+The graphs are awesome and look cool, but they can only tell so much. After playing around, you will notice that many graphs look a lot like each other, and that is even more so in the case of graphs with lots of nodes. Therefore, we need other measures to help understand the characteristics of our network.
 
 ## Degrees
 
@@ -49,7 +49,7 @@ Try `nx.density(G)`.
 The concept of triadic closure comes from the assumption that if A knows C and B knows C, it is likely that A and B also know each other, completing a triangle (A-B-C-A). The existence of such triangles in a network are a sign of communities. One way to measure it is by calculating *transitivity*. It is the ratio of the existent triangles in a community by all the possible triangles. `nx.transitivity(G)`. Just like density, transitiviy goes from 0 (none of the possible triangles exists) to 1 (all of the possible triangles exist).
 
 
-## Path measurments
+## Path measurements
 
 Think of it as the friend of a friend in a facebook network. We can calculate the distance between two entities in a network. 
 
@@ -60,12 +60,11 @@ To show the shortest path of edges and nodes between two given nodes, `nx.shorte
 Another good indicatior of how close the communities in our network are, is to see the average shortest path. For that, we can use `nx.average_shortest_path_length(G)`
 
 
-
 ## Diameter
 
 Diameter is a derivative of the shortest path measurement, diameter will output what is the longest of all the shortest path measurements. In other words, it gives the longest chain of connections. Or, better said, it gives the length of the nodes that are further apart. 
 
-To check the diameter of a network graph, do `nx.diameter(G)`. The problem with this method is that it outputs an error if there are nodes that have no path to all others. In that case, what we could do is to find the largest component of the network, make it a subgraph and check its diameter. See below:
+To check the diameter of a network graph, do `nx.diameter(G)`. The problem with this method is that it outputs an error if there are nodes that have no path to all others. In that case, what we could do is to find the largest component of the network, make it a subgraph and check its diameter. We won't do it here, but this is how to:
 
 ```python
 components = nx.connected_components(G)
@@ -75,5 +74,4 @@ subgraph = G.subgraph(largest_component)
 diameter = nx.diameter(subgraph)
 ```
 
-
-[Next](6_import.md)
+[Next](6_import.ipynb)

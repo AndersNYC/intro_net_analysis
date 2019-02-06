@@ -23,18 +23,20 @@ Possible insights from it:
 
 Network Graphs are data structures that consist of nodes and edges (the word "graph" comes from [graph theory](https://en.wikipedia.org/wiki/Graph_theory)). The nodes represent the entities (people, cars, etc) while the edges represent the connections. Graphs are good ways to represent networks, showing patterns that are otherwise not noticed.
 
-PUT IMG1 HERE!
-
-
 # Types of graphs
 
 ## Undirected graphs
 
 Example: Facebook social graph. There is no directionality. If we are friends on Facebook, I am your friend, and you are my friend. Two circles are linked by a line without arrows
 
+![A very simple network](img1.png)
+
+
 ## Directed graphs
 
 Example: Twitter social graph. I may follow Jessica Alba, but she might not follow me back. There is an inherit directionality on it. Circles are linked by arrows. 
+
+![directed network](direct_network.png)
 
 ## Multiple(Di)Graph
 
@@ -42,6 +44,7 @@ Trip records between bike sharing stations. More than one bike can leave from on
 
 The bike sharing station example also helps us to understand the concept of a "Self-loop", a node that is connected to itself. In this case, we can think of a bike that was taken and returned in the same station. The symbol for it would be a circle with a circled arrow departing and going back to the same node.
 
+![multiple graph network](multidigraph.png)
 
 # Creating graphs:
 

@@ -1,3 +1,4 @@
+# Metadata
 
 Metadata can be stored in the graph as well.
 
@@ -42,6 +43,14 @@ for u, v, d in T.edges(data=True):
 ```
 
 Notice that the date would have to be on Python [datetime type](https://docs.python.org/3/library/datetime.html) to work. 
+
+
+## Challenge:
+
+Let's create a network for real so we can play around with it. First, open a file in you favorite text editor and name it "my\_network.py" .
+
+We will create a thanksgiving network, where the nodes are the relatives, and the edges represent who is in speaking terms with whom. Try to add at least 5 family members and create some connections between them. Since it is a small network, let's use names to represent the nodes. Create at least 10 connections.
+
 
 
 [Next](4_plotting.md)
