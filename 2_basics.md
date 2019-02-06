@@ -48,9 +48,6 @@ Going back to the example above, when we added a list of tuples, notice that eve
 
 Again, let's check the number of edges with `G.number_of_edges()`, and we can see the list of edges with `G.edges()`. This will return a list of tuples which represents the edges.
 
-## CHECKING DATA IN OUR GRAPH
-
-There are other things we can check in our graph.
 
 `(nx.info(G))` outputs a nice summary of your network. Average degree is the average number of connections of each node in your network. We will see that in more details.
 

@@ -1,6 +1,6 @@
-# README.md
+# Introduction
 
-This workshop was created based on some resources available online. I've linked them all on the Resources section CREATE A LINK HERE. I strongly suggest that you read those after this workshop to advance your knowledge on network analysis with Python. I want to make a special mention to the excellent blog [The Programming Historian](https://programminghistorian.org/en/lessons/exploring-and-analyzing-network-data-with-python) from which I borrowed many examples and explanations. 
+This workshop was created based on some resources available online. I've linked them all on the [Resources section](7_resources.md). I strongly suggest that you read those after this workshop to advance your knowledge on network analysis with Python. I want to make a special mention to the excellent blog [The Programming Historian](https://programminghistorian.org/en/lessons/exploring-and-analyzing-network-data-with-python) from which I borrowed many examples and explanations. 
 
 By the end of this workshop, participants will:
 

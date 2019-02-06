@@ -144,4 +144,4 @@ https://networkx.github.io/documentation/stable/reference/readwrite/generated/ne
 If you need to make it a different kind of Graph, such as a DiGraph, you can pass an argument: `G = nx.read_edgelist('test.txt', create_using=nx.DiGraph())`.
 If the third number is the weight, we can use `G = nx.read_edgelist('test.txt', data=(('weight',float),), create_using=nx.DiGraph())`. Don't ask me about the comma after the parenthesys in "...float),)". I can't see any sense, but that's how it is in the official documentation.
 
-[Next](7_resources.md)
+[Next](https://github.com/rafadavis/intro_net_analysis/blob/master/7_resources.md)

@@ -7,8 +7,6 @@
 For more options, we can use `nx.draw_networkx(G)`. There are a lot of options, you can check it [here](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html#networkx.drawing.nx_pylab.draw_networkx) Whe using this option, arrows and labels are true by default.
 
 
-# Network visualization
-
 # Plotting weighted network graphs
 
 Plotting weighted graphs is a bit more complicated and we won't be able to cover in this workshop. If you want to know more about it, here are a couple links:
@@ -23,7 +21,7 @@ Python can do whatever you want to do in terms of plotting things. There is a le
 
 # CHALLENGE
 
-Check this [link](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html#networkx.drawing.nx_pylab.draw_networkx) and make two changes in your plot. If you are out of ideas, you can change the color and size of the nodes. Remember: plotting in Python has a very steep learning curve, so if you try something too bold, it might take you some time to figure out how to make it work.
+Check this [link](https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html#networkx.drawing.nx_pylab.draw_networkx) and make two changes in your plot: change the size and the color of the nodes.
 
 [Next](5_other_tools.md)
 

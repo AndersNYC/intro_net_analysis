@@ -30,7 +30,7 @@ What if we want to check only nodes that match some specific requirements?
 noi = []
 for n, d in G.nodes(data=True):
     if d['sex'] == 'Male':
-        noi.append({n:d['age']}) # just n if we want only to know
+        noi.append({n:d['age']}) # just n if we want only to know the names
 ```		
 
 The same could be done for edges. We could imagine a network T that has the dates of each connection as metadata. If we wanted to get the data for a specific time, (say, only connections after january first 2010) we could do something like:
