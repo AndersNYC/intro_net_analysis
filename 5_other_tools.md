@@ -24,7 +24,7 @@ friends = []
 
 for person, connections in G.degree():
     people.append(person)
-	friends.append(connections)
+    friends.append(connections)
 
 plt.plot(people, friends, 'yo') # 'yo' means put dots on our Y values. Try 'yo-' to see what happens.
 plt.xlabel('Person')
